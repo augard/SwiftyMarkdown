@@ -389,7 +389,7 @@ If that is not set, then the system default will be used.
 	
 	- returns: An NSAttributedString with the styles applied
 	*/
-	open func attributedString(from markdownString : String? = nil) -> NSAttributedString {
+	open func attributedString(from markdownString : String? = nil, lines: [SwiftyLine] = []) -> NSAttributedString {
 		
 		self.previouslyFoundTokens.removeAll()
 		self.perfomanceLog.start()
@@ -399,7 +399,7 @@ If that is not set, then the system default will be used.
 		}
 		let attributedString = NSMutableAttributedString(string: "")
 		self.lineProcessor.processEmptyStrings = MarkdownLineStyle.body
-		let foundAttributes : [SwiftyLine] = lineProcessor.process(self.string)
+		let foundAttributes : [SwiftyLine] = lines.isEmpty ? lineProcessor.process(self.string) : lines
 		
 		let references : [SwiftyLine] = foundAttributes.filter({ $0.line.starts(with: "[") && $0.line.contains("]:") })
 		let referencesRemoved : [SwiftyLine] = foundAttributes.filter({ !($0.line.starts(with: "[") && $0.line.contains("]:") ) })
