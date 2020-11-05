@@ -136,13 +136,13 @@ class SwiftyMarkdownTests: XCTestCase {
 A long ordered list:
 
 1. Item 1
-1. Item 2
+2. Item 2
 	1. First Indent 1
 	1. First Indent 2
 		1. Second Indent 1
 	1. First Indent 3
 		1. Second Indent 2
-1. Item 3
+3. Item 3
 
 A break
 
